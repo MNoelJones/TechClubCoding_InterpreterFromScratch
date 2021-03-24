@@ -7,7 +7,7 @@
 	(parser.parse_args arg)
 )
 
-(defn strip_ws [unstripped &optional stripped]
+(defn _strip_ws [unstripped &optional stripped]
 	(if (is stripped None) (setv stripped []))
 	(setv unstripped (list unstripped))
 	(if (= (len unstripped) 0)
@@ -16,19 +16,27 @@
 			(if (not (in (get unstripped 0) string.whitespace))
 				(stripped.append (get unstripped 0))
 			)
-			(strip_ws (list (rest unstripped)) stripped)
+			(_strip_ws (list (rest unstripped)) stripped)
 		)
 	)
 )
 
+(defn strip_ws [unstripped]
+	(.join "" (_strip_ws (list unstripped)))
+)
+
 (defn preprocess [program]
 	(print program)
-	(.join "" (strip_ws (.lower program)))
+	(strip_ws (.lower program))
+)
+
+(defn interpreter [program]
+	(preprocess program)
 )
 
 (defn main []
 	(setv args (parse_args))
-	(print (preprocess (.join " " args.program)))
+	(print (interpreter (.join " " args.program)))
 )
 
 (main)
