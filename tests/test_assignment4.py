@@ -4,7 +4,7 @@ import pytest
 from version import VERSION
 
 
-@pytest.mark.skipif(VERSION < 0.4, reason="Test wants version 0.2")
+@pytest.mark.skipif(VERSION != 0.4, reason="Test wants version 0.2")
 @pytest.mark.parametrize(
     "progfile, expected",
     (
