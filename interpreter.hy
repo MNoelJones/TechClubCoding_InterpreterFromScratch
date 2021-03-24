@@ -47,9 +47,21 @@
 	(.join "" (lfor line (.split program "\n") (strip_comment line)))
 )
 
+(defclass InvalidCharacter [BaseException]
+	None
+)
+
+(defn valid_progchar? [char]
+	(in char "abcdefghijklmnopqrstuvwxyz")
+)
+
 (defn preprocess [program]
 	(print program)
-	(strip_ws (.lower (strip_comments program)))
+	(setv pp_program (strip_ws (.lower (strip_comments program))))
+	(if (not (every? valid_progchar? pp_program))
+		(raise (InvalidCharacter))
+		pp_program
+	)
 )
 
 (defn interpreter [program]
@@ -61,4 +73,6 @@
 	(print (interpreter (.join " " args.program)))
 )
 
-(main)
+(if (= __name__ "__main__")
+	(main)
+)
