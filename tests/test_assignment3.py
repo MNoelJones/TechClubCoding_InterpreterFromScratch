@@ -15,7 +15,7 @@ import pytest
         ),
     )
 )
-def test_assignment_3(program, expected):
+def test_assignment_3_1(program, expected):
     assert interpreter.interpreter(program) == expected
 
 
