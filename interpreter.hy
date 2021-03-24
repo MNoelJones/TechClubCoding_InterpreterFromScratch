@@ -64,8 +64,11 @@
 	)
 )
 
-(defn interpreter [program]
-	(preprocess program)
+(defn interpreter [&optional program file]
+	(if (none? file)
+		(preprocess program)
+		(with [f (open file)] (preprocess (.read f)))
+	)
 )
 
 (defn main []
