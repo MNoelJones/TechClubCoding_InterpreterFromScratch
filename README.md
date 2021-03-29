@@ -2,7 +2,7 @@
 
 This should all run under Python3 (and maybe Python2, although I haven't tested that - it's deprecated, after all!)
 
-Beyond a working Python environment, you will need to install  [https://docs.hylang.org/en/stable/index.html|`hy`], which can be accomplished using pip:
+Beyond a working Python environment, you will need to install [`hy`](https://docs.hylang.org/en/stable/index.html), which can be accomplished using pip:
 ```bash
 	pip install hy
 ```
